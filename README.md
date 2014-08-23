@@ -29,10 +29,10 @@ Step 4: Calculate the Average by grouping on type of data, subject and activity.
 
 Step 5: Write the output text files for Mean/Standard Deviation and Average into two separate text files.
 
-Note: 
-1. First the Training data is processed and then the Test data is processed
-2. All data tables that begin with "tr" refer to Train data sets and "ts" refer to Test data sets
-3. Training data represents 70% (7352) of the Subjects while Test data represents 30% of Subjects
+Note:<br/>
+1. First the Training data is processed and then the Test data is processed<br/>
+2. All data tables that begin with "tr" refer to Train data sets and "ts" refer to Test data sets<br/>
+3. Training data represents 70% (7352) while Test data represents 30% of total subjects<br/>
 
 #SOURCE FILES
 1. 'train/X_train.txt': Training set
