@@ -1,48 +1,40 @@
 run_analysis <- function() {
-  ##
-  ## Purpose: As a part of the Course Project for 'Getting and Cleaning Data', this R code has been written to 
-  ## perform the following funcitons:
-  ## Step 1: Load Subject and Activity data for Training and Test
-  ## Step 2: Extract only the Mean and Standard Deviation variables from the features (which contains a total of 561 variables)
-  ## Step 3: Merge the Subject and Activity data for Training and Test with Variables extracted in Step 2
-  ## Step 4: Calculate the Average for the Training and Test data
-  ## Step 5: Write the output text files for Mean/Standard Deviation and Average Training and Test data
-  ## 
-  ## Note: 
-  ## 1. First the Training data is processed and then the Test data is processed
-  ## 2. All data tables that begin with "tr" refer to Train data sets and "ts" refer to Test data sets
-  ## 3. Training data represents 70% (7352) of the Subjects while Test data represents 30% of Subjects 
+	
   ## Set the directories
-  ##
   vL1Dir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/"
   vL2Dir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/"
   vTestDir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/test"
 	vTrainDir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/train"
-	
-  ## Process Training data
+	##
+  ## At a high-level, the R script first processes the training data and then
+  ## the test data. Then, the processed training and test data is combined.
+  ## Average is then calculated, and finally, two output text files are
+  ## produced. Process Training data.   All data tables that begin with "tr"
+  ## refer to Train data sets and "ts" refer to Test data sets Training data
+  ## represents 70% of the Subjects while Test data represents 30% of Subjects.
+  ##
   setwd(vTrainDir)
-  ## Step 1: Load Subject and Activity data for Training
+  ## Load subjects into table
   tr1 <- read.table(file="subject_train.txt")
   names(tr1) <- c("subject")
   
-  ## Load Activities performed by Subjects into table
+  ## Load activities performed by subjects into table
   tr2 <- read.table(file="y_train.txt")
   names(tr2) <- c("activity")
   
   setwd(vL2Dir)
-  ## Load Activity Labels into table
+  ## Load activity labels into table
   tr3 <- read.table("activity_labels.txt")
   names(tr3) <- c("activity","activity.desc")
   
-  ## Merge Subjects and Activities
+  ## Merge activities performed by the subjects and activities labels
   tr4 <- merge(tr2,tr3,by.x="activity",by.y="activity")
   
-  ## Merge Subjects and Activities
+  ## Merge subjects and activities detailed information from pervious step
   tr5 <- data.frame(tr1,tr4)
   
-  ## Step 2: Extract only the Mean and Standard Deviation variables from the features (which contains a total of 561 variables)
+  ## Load Features into table - Count: 561
   tr6 <- read.table("features.txt")
-  
   ## Search for Standard Deviation Descriptions - std()
   s <- data.frame(grep("std",tr6$V2))
 
@@ -50,14 +42,15 @@ run_analysis <- function() {
   m <- data.frame(grep("mean",tr6$V2))
   
   setwd(vTrainDir)
-
-  ## Step 3: Merge the Subject and Activity data for Training with Variables extracted in Step 2
   ## Load X Training into table 7352x561
   tr7 <- read.table("X_train.txt")
   
   setwd(vL1Dir)
 
-  ## Combine Mean and Standard Deviation Columns with the Subject and Activity Columns
+  ## Combine mean variable columns with subject and activity data using a for
+  ## loop. The variable columns will be added using cbind with an offset from
+  ## the subject and activity columns
+  
   tr8 <- data.frame(tr5)
   
   for ( i in 1:nrow(m)) {
@@ -85,7 +78,11 @@ run_analysis <- function() {
       }
     }
   }
-  ## Combine Std Columns with the Subject and Activity Columns
+  
+  ## Combine standard deviation variable columns with subject and activity data
+  ## using a for loop. The variable columns will be added using cbind with an
+  ## offset from the subject and activity columns
+  
   for ( i in 1:nrow(s)) {
     ## print(s[i,1])
     sVal <- s[i,1]
@@ -109,60 +106,55 @@ run_analysis <- function() {
       }
     }
   }
-  ## print(paste("HARUS: Processed ",nrow(tr8),"rows and",ncol(tr8),"columns of training data"))
   
-  ## Include a column at the beginning to identify Training data
+  ## Include a column at the beginning to identify the type of data i.e. Training data
   tr9 <- data.frame(c("Training data"),tr8)
   names(tr9)[1] <- c("type.of.data")
-
-  ## Step 4: Calculate the Average for the Training data
   tr10 <- aggregate(tr9[,5:82],by=list(tr9$type.of.data,tr9$subject,tr9$activity,tr9$activity.desc),FUN="mean")
   names(tr10)[1] <- paste("type.of.data")
   names(tr10)[2] <- paste("subject")
   names(tr10)[3] <- paste("activity")
   names(tr10)[4] <- paste("activity.desc")
   
-  ########################
-  ## Processing Test data
-  ########################
-  ## Step 1: Load Subject and Activity data for Test
   ## Load Subjects into table
   setwd(vTestDir)
   ts1 <- read.table(file="subject_test.txt")
   names(ts1) <- c("subject")
   
-  ## Load Activities performed by Subjects into table
+  ## Load activities performed by subjects into table
   ts2 <- read.table(file="y_test.txt")
   names(ts2) <- c("activity")
   
   setwd(vL2Dir)
-  ## Load Activity Labels into table
+  ## Load activity labels into table
   ts3 <- read.table("activity_labels.txt")
   names(ts3) <- c("activity","activity.desc")
   
-  ## Merge Subjects and Activities
+  ## Merge activities performed by the subjects and activities labels
   ts4 <- merge(ts2,ts3,by.x="activity",by.y="activity")
   
-  ## Merge Subjects and Activities
+  ## Merge subjects and activities detailed information from pervious step
   ts5 <- data.frame(ts1,ts4)
   
-  ## Step 2: Extract only the Mean and Standard Deviation variables from the features (which contains a total of 561 variables)
+  ## Load features into table - Count: 561
   ts6 <- read.table("features.txt")
-
+  
   ## Search for Standard Deviation Descriptions - std()
   s <- data.frame(grep("std",ts6$V2))
   
   ## Search for Standard Deviation Descriptions - mean()
   m <- data.frame(grep("mean",ts6$V2))
   
-  ## Step 3: Merge the Subject and Activity data for Training with Variables extracted in Step 2
   ## Load X Test into table 7352x561
   setwd(vTestDir)
   ts7 <- read.table("X_test.txt")
   
   setwd(vL1Dir)
   
-  ## Combine Mean Columns with the Subject and Activity Columns
+  ## Combine mean variable columns with subject and activity data using a for
+  ## loop. The variable columns will be added using cbind with an offset from
+  ## the subject and activity columns
+  
   ts8 <- data.frame(ts5)
   for ( i in 1:nrow(m)) {
     ## print(s[i,1])
@@ -189,7 +181,11 @@ run_analysis <- function() {
       }
     }
   }
-  ## Combine Std Columns with the Subject and Activity Columns
+  
+  ## Combine standard deviation variable columns with subject and activity data
+  ## using a for loop. The variable columns will be added using cbind with an
+  ## offset from the subject and activity columns
+  
   for ( i in 1:nrow(s)) {
     ## print(s[i,1])
     sVal <- s[i,1]
@@ -213,27 +209,31 @@ run_analysis <- function() {
       }
     }
   }
-  ## print(paste("HARUS: Processed ",nrow(ts8),"rows and",ncol(ts8),"columns of test data"))
   
-  ## Include a column at the beginning to identify Test data
+  ## Include a column at the beginning to identify the type of data i.e. Test data
   ts9 <- data.frame(c("Test data"),ts8)
   names(ts9)[1] <- c("type.of.data")
-
-  ## Step 4: Calculate the Average for Test data
+ 
   ts10 <- aggregate(ts9[,5:82],by=list(ts9$type.of.data,ts9$subject,ts9$activity,ts9$activity.desc),FUN="mean")
   names(ts10)[1] <- paste("type.of.data")
   names(ts10)[2] <- paste("subject")
   names(ts10)[3] <- paste("activity")
   names(ts10)[4] <- paste("activity.desc")
   
-  ## Step 5: Write the output text files for Mean/Standard Deviation and Average Training and Test data
-  
-  ## Create a tidy data text file that contains the combined Training and Test data
+  ## Combine Training and Test data into a final data
   finalData <- rbind(tr9,ts9)
+  finalDataAvg <- rbind(tr10,ts10)
+  
+  ## Create a tidy data text file that contains the combined Training and Test
+  ## data containing the mean and standard deviation variable columns. Remove
+  ## the first column containing the row numbers. Use a single space separator.
   write.table(finalData,file="harus_tidy_mean_std_data.txt",row.names=FALSE,sep=" ")
   
-  ## Create a tidy data text file that contains average of the variables by activity
-  finalDataAvg <- rbind(tr10,ts10)
+  ## Create a tidy data text file that contains the combined Training and Test 
+  ## data containing the average variable columns grouped by type of data,
+  ## subject and activity. Remove the first column containing the row numbers.
+  ## Use a single space separator.
   write.table(finalDataAvg,file="harus_tidy_avg_data.txt",row.names=FALSE,sep=" ")
+  
   return()
 }
