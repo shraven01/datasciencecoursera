@@ -44,3 +44,8 @@ Note:
 7. 'features.txt: A 561-feature vector with time and frequency domain variables. 
 8. 'activities.txt': Its activity label. 
 
+#OUTPUTFILES
+1. 'harus_tidy_mean_std_data.txt': Contains mean and standard deviation variables by type of data, subject and activity
+2. 'harus_tidy_avg_data.txt': Contains average of the mean and standard deviation variables by type of data, subject and activity
+
+
