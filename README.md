@@ -1,4 +1,4 @@
-##INTRODUCTION
+#INTRODUCTION
 
 The purpose of this project is to demonstrate the ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. Following have been submitted: 
 1) a tidy data set as described below, 
@@ -13,13 +13,16 @@ Here are the data for the project:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-#CODE DESCRIPTION:
-The R script called run_analysis.R that does the following. 
-Step 1: Load Subject and Activity data for Training and Test
-Step 2: Extract only the Mean and Standard Deviation variables from the features (which contains a total of 561 variables)
-Step 3: Merge the Subject and Activity data for Training and Test with Variables extracted in Step 2
-Step 4: Calculate the Average for the Training and Test data
-Step 5: Write the output text files for Mean/Standard Deviation and Average Training and Test data
+##CODE DESCRIPTION:
+
+At a high-level, the R script first processes the training data and then the test data. Then, the processed training and test data is combined. Average is then calculated, and finally, two output text files are produced.
+
+The R script called run_analysis.R performs the following steps for each type of data (training and test):
+Step 1: Load training and test data for subjects. In this step list of activity codes and descriptions are also loaded.
+Step 2: Load the features data that contains 561 variables with code and descriptions. 
+Step 3: Merge the subject and activity data. And then include the Variables with this merged data using a loop. While loading the variables, clean and standardize the variables based on http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf. The variables have been made more descriptive, converted to lower case, replaced '-' with '.' 
+Step 4: Calculate the Average by grouping on type of data, subject and activity
+Step 5: Write the output text files for Mean/Standard Deviation and Average into two separate text files.
  
 Note: 
 1. First the Training data is processed and then the Test data is processed
