@@ -1,14 +1,14 @@
-#Code Book: Human Activity Recognition Using Smartphones Dataset
+Code Book: Human Activity Recognition Using Smartphones Dataset
 Saturday, August 23, 2014
 Codebook prepared by Venky Thyagarajan PMP, based on data sample provided by
 
 If you have questions about the data, please call Venky Thyagarajan at 555-5555 (office) or 555-6666 (pager) or email Joan_Doe@xxxxxx.com
 
-##Type of data
+Type of data
 Training data
 Test data
 
-##Activity
+Activity
 1	WALKING
 2	WALKING_UPSTAIRS
 3	WALKING_DOWNSTAIRS
@@ -16,7 +16,7 @@ Test data
 5	STANDING
 6	LAYING
 
-##Features
+Features
 Note: There are 561 features but only the Mean and Standard Deviation variables have been extract in order to create the output files.
 1 tBodyAcc-mean()-X
 2 tBodyAcc-mean()-Y
