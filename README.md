@@ -41,11 +41,10 @@ Note:
 4. 'test/X_test.txt': Test set
 5. 'test/y_test.txt': Test labels
 6. 'test/subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
-7. 'features.txt: A 561-feature vector with time and frequency domain variables. 
-8. 'activities.txt': Its activity label. 
+7. 'UCI HAR Dataset/features.txt: A 561-feature vector with time and frequency domain variables. 
+8. 'UCI HAR Dataset/activity_labels.txt': Its activity label. 
 
-#OUTPUTFILES
+#OUTPUT FILES
 1. 'harus_tidy_mean_std_data.txt': Contains mean and standard deviation variables by type of data, subject and activity
 2. 'harus_tidy_avg_data.txt': Contains average of the mean and standard deviation variables by type of data, subject and activity
-
 
