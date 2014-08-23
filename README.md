@@ -45,6 +45,7 @@ Note:<br/>
 8. 'UCI HAR Dataset/activity_labels.txt': Its activity label. 
 
 #OUTPUT FILES
+The output files are produced using the write.table command. The columns are separated with a single space. The first row will contain the labels.
 1. 'harus_tidy_mean_std_data.txt': Contains mean and standard deviation variables by type of data, subject and activity
 2. 'harus_tidy_avg_data.txt': Contains average of the mean and standard deviation variables by type of data, subject and activity
 
