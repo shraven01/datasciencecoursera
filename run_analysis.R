@@ -1,18 +1,25 @@
 run_analysis <- function() {
-	
-  ## Set the directories
+    
+  ## The purpose of this project is to demonstrate the ability to collect, work
+  ## with, and clean a data set. The goal is to prepare tidy data that can be
+  ## used for later analysis.
+  ##
+  ## Developed by Venky Thyagarajan
+  ## 
+  ## At a high-level, the R script first processes the training data and then 
+  ## the test data. Then, the processed training and test data is combined. 
+  ## Average is then calculated, and finally, two output text files are 
+  ## produced. Process Training data.   All data tables that begin with "tr" 
+  ## refer to Train data sets and "ts" refer to Test data sets Training data 
+  ## represents 70% of the Subjects while Test data represents 30% of Subjects.
+  ## 
+  ## After you unzip the data make sure the directories are appropriately 
+  ## updated before running the script.
   vL1Dir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/"
   vL2Dir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/"
   vTestDir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/test"
-	vTrainDir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/train"
-	##
-  ## At a high-level, the R script first processes the training data and then
-  ## the test data. Then, the processed training and test data is combined.
-  ## Average is then calculated, and finally, two output text files are
-  ## produced. Process Training data.   All data tables that begin with "tr"
-  ## refer to Train data sets and "ts" refer to Test data sets Training data
-  ## represents 70% of the Subjects while Test data represents 30% of Subjects.
-  ##
+  vTrainDir="/Users/Administrator/Coursera/Getting and Cleaning Data/Course Project/UCI HAR Dataset/train"
+
   setwd(vTrainDir)
   ## Load subjects into table
   tr1 <- read.table(file="subject_train.txt")
