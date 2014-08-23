@@ -23,8 +23,19 @@ Step 2: Load the features data that contains 561 variables with code and descrip
 Step 3: Merge the subject and activity data. And then include the Variables with this merged data using a loop. While loading the variables, clean and standardize the variables based on http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf. The variables have been made more descriptive, converted to lower case, replaced '-' with '.' 
 Step 4: Calculate the Average by grouping on type of data, subject and activity
 Step 5: Write the output text files for Mean/Standard Deviation and Average into two separate text files.
- 
+
 Note: 
 1. First the Training data is processed and then the Test data is processed
 2. All data tables that begin with "tr" refer to Train data sets and "ts" refer to Test data sets
 3. Training data represents 70% (7352) of the Subjects while Test data represents 30% of Subjects
+
+#SOURCE FILES
+1. 'train/X_train.txt': Training set
+2. 'train/y_train.txt': Training labels
+3. 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+4. 'test/X_test.txt': Test set
+5. 'test/y_test.txt': Test labels
+6. 'test/subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+7. 'features.txt: A 561-feature vector with time and frequency domain variables. 
+8. 'activities.txt': Its activity label. 
+
