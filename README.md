@@ -20,7 +20,7 @@ At a high-level, the R script first processes the training data and then the tes
 The R script called run_analysis.R performs the following steps for each type of data (training and test):
 Step 1: Load training and test data for subjects. In this step list of activity codes and descriptions are also loaded.
 Step 2: Load the features data that contains 561 variables with code and descriptions. 
-Step 3: Merge the subject and activity data. And then include the Variables with this merged data using a loop. While loading the variables, clean and standardize the variables based on http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf. The variables have been made more descriptive, converted to lower case, replaced '-' with '.' 
+Step 3: Merge the subject and activity data. And then include the Variables with this merged data using a loop. While loading the variables, clean and standardize the variables based on http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf. The variables have been made more descriptive, converted to lower case, replaced '-' with '.'
 Step 4: Calculate the Average by grouping on type of data, subject and activity
 Step 5: Write the output text files for Mean/Standard Deviation and Average into two separate text files.
 
